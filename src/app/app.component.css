@@ -1,0 +1,8 @@
+main {
+  /* 
+    Lost with margin: auto; setting
+    margin-top: 1rem;
+  */
+  width: 80%;
+  margin: 1rem auto;
+}
