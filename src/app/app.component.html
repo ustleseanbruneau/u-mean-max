@@ -5,8 +5,10 @@
   <app-post-create (postCreated)="onPostAdded($event)"></app-post-create>
   <app-post-list [posts]="storedPosts"></app-post-list>
   -->
-  <!-- Using Angular service - don't need pass arguments -->
+  <!-- Using Angular service - don't need pass arguments 
   <app-post-create></app-post-create>
   <app-post-list></app-post-list>
+  -->
+  <router-outlet></router-outlet>
 </main>
 

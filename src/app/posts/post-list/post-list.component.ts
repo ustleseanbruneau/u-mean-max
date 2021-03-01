@@ -20,6 +20,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   //@Input - pre-Angular service
   //@Input() posts: Post[] = []
   posts: Post[] = [];
+  isLoading = false;
   private postsSub?: Subscription
 
   constructor(public postsService: PostsService) {
@@ -27,10 +28,12 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     //this.posts = this.postsService.getPosts()
+    this.isLoading = true
     this.postsService.getPosts()
     this.postsSub = this.postsService.getPostUpdateListener()
       .subscribe((posts: Post[]) => {
-        this.posts = posts;
+        this.isLoading = false
+        this.posts = posts
       })
   }
 
