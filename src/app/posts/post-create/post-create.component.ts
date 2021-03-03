@@ -23,7 +23,7 @@ export class PostCreateComponent implements OnInit {
     isLoading = false
     form: FormGroup
     imagePreview?: string
-    private mode = 'create'
+    private mode = "create"
     private postId: any
 
     constructor(public postsService: PostsService, public route: ActivatedRoute) {
@@ -38,13 +38,13 @@ export class PostCreateComponent implements OnInit {
       })
       this.route.paramMap.subscribe((paramMap: ParamMap) => {
         if (paramMap.has('postId')) {
-          this.mode = 'edit'
-          this.postId = paramMap.get('postId')
+          this.mode = "edit"
+          this.postId = paramMap.get("postId")
           this.isLoading = true;
           this.postsService.getPost(this.postId).subscribe(postData => {
             this.isLoading = false;
             this.post = { id: postData._id, title: postData.title, content: postData.content, imagePath: postData.imagePath } 
-            this.form.setValue({'title': this.post.title, 'content': this.post.content, image: this.post.imagePath})
+            this.form.setValue({'title': this.post.title, 'content': this.post.content, 'image': this.post.imagePath})
           })
         } else {
           this.mode = 'create'
@@ -71,9 +71,11 @@ export class PostCreateComponent implements OnInit {
     }
 
     onSavePost() {
+      /*
       if (this.form.invalid) {
-         return;
+          return;
       }
+      */
       this.isLoading = true;
       if (this.mode === 'create') {
         this.postsService.addPost(this.form.value.title,this.form.value.content, this.form.value.image)

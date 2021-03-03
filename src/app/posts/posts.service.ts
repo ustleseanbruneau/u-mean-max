@@ -17,19 +17,6 @@ export class PostsService {
   }
 
   getPosts() {
-    // [...<obj name]
-    // makes a copy of object, outside will not directly change array
-    //return [...this.posts]
-
-    /* before convert to _id
-    this.http.get<{message: string, posts: Post[]}>('http://localhost:3000/api/posts')
-      .subscribe((postData) => {
-        this.posts = postData.posts
-        this.postsUpdated.next([...this.posts])
-      });
-    */
-
-    // After convert to _id 
     this.http.get<{message: string, posts: any[]}>('http://localhost:3000/api/posts')
       .pipe(map((postData) => {
         return postData.posts.map(post => {
@@ -37,7 +24,7 @@ export class PostsService {
             title: post.title,
             content: post.content,
             id: post._id,
-            imagePath: ''
+            imagePath: post.imagePath
           }
         })
       }))
@@ -53,7 +40,7 @@ export class PostsService {
 
   getPost(id: string) {
     //return {...this.posts.find(p => p.id === id)}
-    return this.http.get<{ _id: string; title: string; content: string, imagePath: string }>(
+    return this.http.get<{ _id: string, title: string, content: string, imagePath: string }>(
       "http://localhost:3000/api/posts/" + id
     )
   }
@@ -101,7 +88,7 @@ export class PostsService {
         const post: Post = {
           id: id, 
           title: title, 
-          content: content ,
+          content: content,
           imagePath: ""
         }
         updatedPosts[oldPostIndex] = post;

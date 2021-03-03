@@ -9,7 +9,6 @@ export const mimeType = (
     }
     const file = control.value as File
     const fileReader = new FileReader()
-    fileReader.onloadend = () => {}
     const frObs = Observable.create((observer: Observer<{ [key: string]: any }>) => {
       fileReader.addEventListener("loadend", () => {
         const arr = new Uint8Array(fileReader.result as ArrayBuffer).subarray(0, 4)
@@ -34,6 +33,7 @@ export const mimeType = (
             break;
         }
         if (isValid) {
+          //observer.next( null )
           observer.next({ invalidMimeType: false })
         } else {
           observer.next({ invalidMimeType: true })

@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
     if(isValid) {
       error = null
     }
-    cb(null, "backend/images")
+    cb(error, "backend/images")
   },
   filename: (req, file, cb) => {
     const name = file.originalname.toLowerCase().split(' ').join('-')
@@ -57,7 +57,7 @@ router.put("/:id", multer({storage: storage}).single("image"), (req, res, next) 
     _id: req.body.id,
     title: req.body.title,
     content: req.body.content,
-    imagePath = imagePath
+    imagePath: imagePath
   })
   console.log(post)
   Post.updateOne({_id: req.params.id}, post).then(result => {
