@@ -7,6 +7,7 @@ const postsRoutes = require("./routes/posts")
 
 const app = express();
 
+// Add connection string from MongoDB Atlas
 mongoose.connect("")
 .then(() => {
   console.log("Connected to database!")
