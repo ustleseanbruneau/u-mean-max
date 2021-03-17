@@ -23,7 +23,8 @@ router.post("/signup", (req, res, next) => {
         })
         .catch(err => {
           res.status(500).json({
-            error: err
+            //error: err
+            message: "Invalid authentication credentials!"
           })
         })
     })
@@ -47,7 +48,7 @@ router.post("/login", (req, res, next) => {
       //console.log(result)
       if(!result) {
         return res.status(401).json({
-          message: "Auth failed"
+          message: "Invalid authentication"
         })
       }
       const token = jwt.sign( {
@@ -63,7 +64,7 @@ router.post("/login", (req, res, next) => {
     })
     .catch(err => {
       return res.status(401).json({
-        message: "Auth failed"
+        message: "You are not authenticated"
       })
     })
 })
