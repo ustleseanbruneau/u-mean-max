@@ -10,7 +10,7 @@ const app = express();
 
 // Add connection string from MongoDB Atlas
 // 
-mongoose.connect("")
+mongoose.connect("mongodb+srv://sean:" + process.env.MONGO_ATLAS_PW + "@cluster0.fc78s.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 .then(() => {
   console.log("Connected to database!")
 })
